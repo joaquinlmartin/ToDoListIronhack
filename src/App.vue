@@ -20,7 +20,7 @@ export default {
   },
   async created() {
     try {
-      await userStore.fetchUser();
+      await this.fetchUser();
       if (!this.user) {
         this.$router.push({ path: '/auth' });
       } else {
