@@ -1,6 +1,6 @@
 <template>
     <h1>Esta es la vista del Sign up</h1>
-    <button @click="singUp">Sign Up</button>
+    <button @click="handleSingUp">Sign Up</button>
 </template>
 
 <script>
@@ -14,12 +14,20 @@ export default {
   },
   methods: {
     ...mapActions(userStore, ['signUp']),
-    signUp() {
+    handleSingUp() {
       const userData = {
         email: 'joaquinlmartin@gmail.com',
         password: 'prueba1234',
       };
-      this.signUp(userData);
+      this.signUp(userData.email, userData.password);
+    },
+  },
+  watch: {
+    user() {
+      if (this.user) {
+        console.log(this.user);
+        this.$router.push({ path: '/' });
+      }
     },
   },
 };
