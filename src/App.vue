@@ -6,10 +6,28 @@
 </template>
 
 <script>
+import userStore from '@/store/user';
+import { mapState, mapActions } from 'pinia';
+
 export default {
   name: 'App',
-  created() {
-
+  computed: {
+    ...mapState(userStore, ['user']),
+  },
+  methods: {
+    ...mapActions(userStore, ['fetchUser']),
+  },
+  async created() {
+    try {
+      await userStore.fetchUser();
+      if (!this.user) {
+        this.$router.push({ path: '/auth' });
+      } else {
+        this.$router.push({ path: '/' });
+      }
+    } catch (e) {
+      console.log(e);
+    }
   },
 };
 </script>
