@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Vista Home</h1>
+    <h1> Vista Home </h1>
   </div>
 </template>
 
