@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav v-if="user !== null">
     <router-link to="/">Home</router-link> |
     <router-link to="/auth">Sign Up / Login</router-link>
   </nav>
