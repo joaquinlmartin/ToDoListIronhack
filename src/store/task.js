@@ -1,9 +1,11 @@
-import { defineStore } from 'pinia';
-import supabase from '../supabase/index';
+// /store/task.js
 
-export default defineStore('tasks', {
+import { defineStore } from 'pinia';
+import { supabase } from '../supabase/index';
+
+export const useTaskStore = defineStore('tasks', {
   state: () => ({
-    tasks: [],
+    tasks: null,
   }),
   actions: {
     async fetchTasks() {
@@ -12,6 +14,33 @@ export default defineStore('tasks', {
         .select('*')
         .order('id', { ascending: false });
       this.tasks = tasks;
+    },
+    async newTask(taskTitle, userID) {
+      await supabase
+        .from('tasks')
+        .insert([{ title: taskTitle, is_complete: false, user_id: userID }]);
+      this.fetchTasks();
+    },
+    async updateStatusTask(taskID, taskStatus) {
+      await supabase
+        .from('tasks')
+        .update({ is_complete: taskStatus })
+        .match({ id: taskID });
+      this.fetchTasks();
+    },
+    async editTask(taskID, taskTitle) {
+      await supabase
+        .from('tasks')
+        .update({ title: taskTitle })
+        .match({ id: taskID });
+      this.fetchTasks();
+    },
+    async deleteTask(taskID) {
+      await supabase
+        .from('tasks')
+        .delete()
+        .match({ id: taskID });
+      this.fetchTasks();
     },
   },
 });
