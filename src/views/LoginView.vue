@@ -32,7 +32,7 @@
               id="email"
               v-model="email"
               class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4
-              border-gray-300 focus:border-blue-600 transition duration-500 px-3 pb-3"
+              border-gray-300 focus:border-red-600 transition duration-500 px-3 pb-3"
             />Email</label
             >
           </div>
@@ -46,18 +46,18 @@
               id="password"
               v-model="password"
               class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4
-              border-gray-300 focus:border-blue-600 transition duration-500 px-3 pb-3"
+              border-gray-300 focus:border-red-600 transition duration-500 px-3 pb-3"
             />Password</label>
           </div>
           <div class="flex justify-end">
             <a
               href="#"
-              class="text-sm text-blue-600 hover:text-blue-700 hover:underline mb-6"
+              class="text-sm text-red-600 hover:text-red-700 hover:underline mb-6"
               >Forgot your password?</a
             >
           </div>
           <button
-            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded shadow-lg
+            class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded shadow-lg
             hover:shadow-xl transition duration-200"
             type="submit"
           >

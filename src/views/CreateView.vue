@@ -34,7 +34,7 @@
               v-model="title"
               maxlength="40"
               class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4
-              border-gray-300 focus:border-blue-600 transition duration-500 px-3 pb-3"
+              border-gray-300 focus:border-red-600 transition duration-500 px-3 pb-3"
             />Title</label
             >
           </div>
@@ -49,7 +49,7 @@
               id="todo-state"
               v-model="isComplete"
               class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4
-              border-gray-300 focus:border-blue-600 transition duration-500 px-3 pb-3"
+              border-gray-300 focus:border-red-600 transition duration-500 px-3 pb-3"
             >
               <option value="select-state" disabled selected hidden>
                 Select state
@@ -61,7 +61,7 @@
           </div>
 
           <button
-            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded shadow-lg
+            class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded shadow-lg
             hover:shadow-xl transition duration-200"
             type="submit"
           >

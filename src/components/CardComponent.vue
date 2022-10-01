@@ -8,7 +8,7 @@
   <h1 class="mt-8 mb-6 h-[70px] text-center text-xl">
     {{ todo.title }}
   </h1>
-  <div class="flex justify-center gap-12 text-blue-600">
+  <div class="flex justify-center gap-12 text-red-600">
     <font-awesome-icon
       icon="fa-solid fa-pen-to-square"
       class="cursor-pointer"
@@ -58,7 +58,7 @@
             v-model="title"
             maxlength="40"
             class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4
-            border-gray-300 focus:border-blue-600 transition duration-500 px-3 pb-3"
+            border-gray-300 focus:border-red-600 transition duration-500 px-3 pb-3"
           />New title</label>
         </div>
         <div class="w-full mb-6 pt-3 rounded bg-gray-200">
@@ -70,7 +70,7 @@
             required
             id="todo-state"
             class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4
-            border-gray-300 focus:border-blue-600 transition duration-500 px-3 pb-3"
+            border-gray-300 focus:border-red-600 transition duration-500 px-3 pb-3"
           >
             <option value="select-state" disabled selected hidden>
               Select state
@@ -81,7 +81,7 @@
         </div>
       </div>
       <button
-        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded shadow-lg
+        class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded shadow-lg
         hover:shadow-xl transition duration-200"
         type="submit"
       >
