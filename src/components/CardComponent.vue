@@ -25,7 +25,7 @@
     class="absolute inset-0 flex items-center justify-center bg-gray-700 bg-opacity-10"
   >
     <form
-      @submit.prevent="editData()"
+      @submit.prevent="editData"
       class="max-w-2xl p-10 bg-white rounded-md shadow-xl"
     >
       <div
@@ -54,7 +54,8 @@
             >
           <input
             type="text"
-            id="edit"
+            id="todo-name"
+            v-model="title"
             maxlength="40"
             class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4
             border-gray-300 focus:border-blue-600 transition duration-500 px-3 pb-3"
@@ -95,10 +96,10 @@ import { ref } from 'vue';
 import { useTaskStore } from '../store/task';
 
 const props = defineProps(['todo', 'index', 'data', 'getData']);
-console.log(props.data[0]);
 const taskStore = useTaskStore();
 const statusMsg = ref(null);
 const errorMsg = ref(null);
+const title = ref('');
 const openTask = ref('');
 const isOpen = ref(false);
 const deleteData = async () => {
@@ -111,7 +112,7 @@ const deleteData = async () => {
 const editData = async () => {
   try {
     await taskStore.editTodo(
-      props.data[props.index].title,
+      title.value,
       props.data[props.index].isComplete,
       props.data[props.index].id,
     );

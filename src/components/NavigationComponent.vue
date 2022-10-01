@@ -11,7 +11,8 @@
         <router-link class="cursor-pointer" :to="{ name: 'Create' }"
           >Create</router-link
         >
-        <li @onClick="signout" class="cursor-pointer">Logout</li>
+        <!-- eslint-disable-next-line -->
+        <li @click="signout()" class="cursor-pointer">Logout</li>
       </ul>
     </nav>
   </header>
