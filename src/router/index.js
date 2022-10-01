@@ -1,25 +1,45 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import Home from '../views/HomeView.vue';
+import Login from '../views/LoginView.vue';
+import Signup from '../views/SignupView.vue';
+import Create from '../views/CreateView.vue';
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: () => import('../pages/Login.vue'),
+    name: 'Home',
+    component: Home,
+    meta: {
+      title: 'Home',
+      auth: false,
+    },
   },
   {
-    path: '/register',
-    name: 'register',
-    component: () => import('../pages/Register.vue'),
+    path: '/login',
+    name: 'Login',
+    component: Login,
+    meta: {
+      title: 'Login',
+      auth: false,
+    },
   },
   {
-    path: '/dashboard',
-    name: 'dashbaord',
-    component: () => import('../pages/Dashboard.vue'),
+    path: '/signup',
+    name: 'Signup',
+    component: Signup,
+    meta: {
+      title: 'Signup',
+      auth: false,
+    },
   },
   {
-    path: '/newtask',
-    name: 'newtask',
-    component: () => import('../pages/NewTask.vue'),
+    path: '/create',
+    name: 'Create',
+    component: Create,
+    meta: {
+      title: 'Create',
+      auth: true,
+    },
   },
 ];
 

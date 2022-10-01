@@ -1,7 +1,5 @@
-// /store/task.js
-
 import { defineStore } from 'pinia';
-import { supabase } from '../supabase/index';
+import supabase from '../supabase';
 
 export const useTaskStore = defineStore('tasks', {
   state: () => ({
@@ -9,37 +7,36 @@ export const useTaskStore = defineStore('tasks', {
   }),
   actions: {
     async fetchTasks() {
-      const { data: tasks } = await supabase
+      const { data: tasks, error } = await supabase
         .from('tasks')
         .select('*')
         .order('id', { ascending: false });
       this.tasks = tasks;
+      console.log('FETCHTASK', this.tasks.target);
+      if (error) throw error;
     },
-    async newTask(taskTitle, userID) {
+    async insertTodo(title, isComplete, userId) {
+      const { error } = await supabase.from('tasks').insert([
+        {
+          title,
+          isComplete,
+          userId,
+        },
+      ]);
+      if (error) throw error;
+    },
+    async editTodo(title, isComplete, taskId) {
       await supabase
         .from('tasks')
-        .insert([{ title: taskTitle, is_complete: false, user_id: userID }]);
+        .update({ title, isComplete })
+        .match({ id: taskId });
       this.fetchTasks();
     },
-    async updateStatusTask(taskID, taskStatus) {
-      await supabase
-        .from('tasks')
-        .update({ is_complete: taskStatus })
-        .match({ id: taskID });
-      this.fetchTasks();
-    },
-    async editTask(taskID, taskTitle) {
-      await supabase
-        .from('tasks')
-        .update({ title: taskTitle })
-        .match({ id: taskID });
-      this.fetchTasks();
-    },
-    async deleteTask(taskID) {
+    async deleteTodo(taskId) {
       await supabase
         .from('tasks')
         .delete()
-        .match({ id: taskID });
+        .match({ id: taskId });
       this.fetchTasks();
     },
   },

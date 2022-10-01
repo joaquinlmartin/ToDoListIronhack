@@ -1,31 +1,37 @@
 <template>
-  <section class="wrapper-main">
-      <router-view class="app-main" />
+  <section v-if='appReady' class='min-h-full box-border'>
+    <Navigation />
+    <router-view class='app-main' />
   </section>
-  </template>
+</template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
+import supabase from './supabase';
 import { useUserStore } from './store/user';
+import Navigation from './components/NavigationComponent.vue';
 
 const router = useRouter();
 const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
-
+const appReady = ref(null);
 onMounted(async () => {
   try {
-    await userStore.fetchUser(); // here we call fetch user
+    await userStore.fetchUser();
     if (!user.value) {
-      // redirect them to logout if the user is not there
-      router.push({ path: '/' });
+      router.push({ path: '/login' });
+      appReady.value = true;
     } else {
-      // continue to dashboard
-      router.push({ path: '/dashboard' });
+      router.push({ path: '/' });
     }
   } catch (e) {
     console.log(e);
   }
+});
+supabase.auth.onAuthStateChange((event, session) => {
+  userStore.setUser(session);
+  appReady.value = true;
 });
 </script>
